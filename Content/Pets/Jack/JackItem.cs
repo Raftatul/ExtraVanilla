@@ -7,11 +7,6 @@ namespace ExtraVanilla.Content.Pets.Jack
 {
     public class JackItem : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("New Gen Robot Head");
-        }
-
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.DD2PetGato);

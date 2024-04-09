@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -69,6 +65,8 @@ namespace ExtraVanilla.Content.Projectiles.Minions
 
     internal class CoolMinion : ModProjectile
     {
+		private Player owner;
+
         public override void SetStaticDefaults()
         {
             // Denotes that this projectile is a pet or minion
@@ -93,10 +91,15 @@ namespace ExtraVanilla.Content.Projectiles.Minions
             Projectile.netUpdate = true;
         }
 
-		public override void AI()
-		{
-			Player owner = Main.player[Projectile.owner];
+        public override void OnSpawn(IEntitySource source)
+        {
+            base.OnSpawn(source);
 
+            owner = Main.player[Projectile.owner];
+        }
+
+        public override void AI()
+		{
 			if (!CheckActive(owner))
 			{
 				return;
