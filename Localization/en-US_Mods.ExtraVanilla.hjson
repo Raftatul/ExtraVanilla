@@ -1,0 +1,164 @@
+Buffs: {
+	AttackSpeedBuff: {
+		DisplayName: Attack Speed Buff
+		Description: Mods.ExtraVanilla.Buffs.AttackSpeedBuff.Description
+	}
+
+	MegaRegen: {
+		DisplayName: Mega Regen
+		Description: Mods.ExtraVanilla.Buffs.MegaRegen.Description
+	}
+
+	SuperBuilderBuff: {
+		DisplayName: Super Builder Buff
+		Description: Mods.ExtraVanilla.Buffs.SuperBuilderBuff.Description
+	}
+
+	GameBoyJackBuff: {
+		DisplayName: Game Boy Jack Buff
+		Description: Mods.ExtraVanilla.Buffs.GameBoyJackBuff.Description
+	}
+
+	JackBuff: {
+		DisplayName: Jack Buff
+		Description: Mods.ExtraVanilla.Buffs.JackBuff.Description
+	}
+
+	CoolMinionBuff: {
+		DisplayName: Cool Minion Buff
+		Description: Mods.ExtraVanilla.Buffs.CoolMinionBuff.Description
+	}
+}
+
+Items: {
+	CharmofLife: {
+		DisplayName: Charmof Life
+		Tooltip: ""
+	}
+
+	CritHeart: {
+		DisplayName: Crit Heart
+		Tooltip: ""
+	}
+
+	CursedCape: {
+		DisplayName: Cursed Cape
+		Tooltip: ""
+	}
+
+	Flashlight: {
+		DisplayName: Flashlight
+		Tooltip: ""
+	}
+
+	LivingBoots: {
+		DisplayName: Living Boots
+		Tooltip: ""
+	}
+
+	StoneofLife: {
+		DisplayName: Stoneof Life
+		Tooltip: ""
+	}
+
+	SuperFlashlight: {
+		DisplayName: Super Flashlight
+		Tooltip: ""
+	}
+
+	SuperInvocator: {
+		DisplayName: Super Invocator
+		Tooltip: ""
+	}
+
+	WoodenBoots: {
+		DisplayName: Wooden Boots
+		Tooltip: ""
+	}
+
+	WoodenShield: {
+		DisplayName: Wooden Shield
+		Tooltip: ""
+	}
+
+	LavaProofBreastplate: {
+		DisplayName: Lava Proof Breastplate
+		Tooltip: ""
+	}
+
+	LavaProofHelmet: {
+		DisplayName: Lava Proof Helmet
+		Tooltip: ""
+	}
+
+	LavaProofLeggings: {
+		DisplayName: Lava Proof Leggings
+		Tooltip: ""
+	}
+
+	ColdSilk: {
+		DisplayName: Cold Silk
+		Tooltip: ""
+	}
+
+	SpikyBossBag: {
+		DisplayName: Spiky Boss Bag
+		Tooltip: ""
+	}
+
+	SpikySummon: {
+		DisplayName: Spiky Summon
+		Tooltip: ""
+	}
+
+	SuperBuilderPotion: {
+		DisplayName: Super Builder Potion
+		Tooltip: ""
+	}
+
+	DebugItem: {
+		DisplayName: Debug Item
+		Tooltip: ""
+	}
+
+	HotSilk: {
+		DisplayName: Hot Silk
+		Tooltip: ""
+	}
+
+	SpinningSword: {
+		DisplayName: Spinning Sword
+		Tooltip: ""
+	}
+
+	GameBoyJackItem: {
+		DisplayName: Game Boy Jack Item
+		Tooltip: ""
+	}
+
+	JackItem: {
+		DisplayName: Jack Item
+		Tooltip: ""
+	}
+
+	Invocation: {
+		DisplayName: Invocation
+		Tooltip: ""
+	}
+}
+
+NPCs: {
+	JackBoss.DisplayName: Jack Boss
+	SpikyBoss.DisplayName: Spiky Boss
+}
+
+Projectiles: {
+	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
+	GameBoyJack.DisplayName: Game Boy Jack
+	Jack.DisplayName: Jack
+	FireBall.DisplayName: Fire Ball
+	FlyingShield.DisplayName: Flying Shield
+	CoolMinion.DisplayName: Cool Minion
+	ProjHeartBonus.DisplayName: Proj Heart Bonus
+	SpikeProjectile.DisplayName: Spike Projectile
+}

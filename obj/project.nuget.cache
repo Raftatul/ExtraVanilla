@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "myiYQ8FJzjnU49Nf2G4Ees/Y2lzEm9wkcsGdePg4wmsoh12qVNlZUz4pkV2PPcjxZeAZ9He++EloEbq3zLfDvg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\ExtraVanilla.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rdaub\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}
