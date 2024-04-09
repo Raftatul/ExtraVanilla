@@ -1,12 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using System;
 
 namespace ExtraVanilla.Content.Items.Accessories
 {
-	public class StoneOfLife : ModItem
+	public class LifeStone : ModItem
 	{
 		public override void SetDefaults()
 		{

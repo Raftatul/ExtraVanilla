@@ -1,12 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using System;
 
 namespace ExtraVanilla.Content.Items.Accessories
 {
-	public class CharmOfLife : ModItem
+	public class LifeCharm : ModItem
 	{
 		public override void SetDefaults()
 		{
@@ -29,7 +27,7 @@ namespace ExtraVanilla.Content.Items.Accessories
         {
 			CreateRecipe()
 				.AddIngredient(ItemID.CharmofMyths, 1)
-				.AddIngredient(ModContent.ItemType<StoneOfLife>(), 1)
+				.AddIngredient(ModContent.ItemType<LifeStone>(), 1)
 				.AddTile(TileID.TinkerersWorkbench)
 				.Register();
 		}
