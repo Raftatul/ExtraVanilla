@@ -7,12 +7,6 @@ namespace ExtraVanilla.Content.Items.Armor
 	[AutoloadEquip(EquipType.Body)]
 	public class LavaProofBreastplate : ModItem
 	{
-
-        public override void SetStaticDefaults()
-        {
-			// Tooltip.SetDefault("Grant immunity to OnFire debuffs");
-        }
-
         public override void SetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 20);

@@ -11,12 +11,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 	{
 		private int maxDamageBonus = 16;
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Cursed Cape");
-			// Tooltip.SetDefault("Belong to an death hunter, this cape will convert part of life lost bonus damage");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

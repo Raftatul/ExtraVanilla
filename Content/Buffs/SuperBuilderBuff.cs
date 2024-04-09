@@ -6,12 +6,6 @@ namespace ExtraVanilla.Content.Buffs
 {
 	public class SuperBuilderBuff : ModBuff
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Bob the builder");
-			// Description.SetDefault("Excellent way to build bridge");
-		}
-
         public override void Update(Player player, ref int buffIndex)
 		{
 			player.tileSpeed += 100;

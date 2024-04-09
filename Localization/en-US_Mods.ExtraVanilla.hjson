@@ -1,104 +1,120 @@
 Buffs: {
 	AttackSpeedBuff: {
-		DisplayName: Attack Speed Buff
-		Description: Mods.ExtraVanilla.Buffs.AttackSpeedBuff.Description
+		DisplayName: You have swift hand !
+		Description: Increase melee speed by 25%
 	}
 
 	MegaRegen: {
-		DisplayName: Mega Regen
-		Description: Mods.ExtraVanilla.Buffs.MegaRegen.Description
+		DisplayName: Mega Regen !!!
+		Description: Look at your health bar
 	}
 
 	SuperBuilderBuff: {
-		DisplayName: Super Builder Buff
-		Description: Mods.ExtraVanilla.Buffs.SuperBuilderBuff.Description
+		DisplayName: Bob the builder
+		Description: Excellent way to build bridge
 	}
 
 	GameBoyJackBuff: {
-		DisplayName: Game Boy Jack Buff
-		Description: Mods.ExtraVanilla.Buffs.GameBoyJackBuff.Description
+		DisplayName: Game Boy Jack
+		Description: A cute little robot follow you !
 	}
 
 	JackBuff: {
-		DisplayName: Jack Buff
-		Description: Mods.ExtraVanilla.Buffs.JackBuff.Description
+		DisplayName: Jack
+		Description: A cute little robot follow you !
 	}
 
 	CoolMinionBuff: {
 		DisplayName: Cool Minion Buff
-		Description: Mods.ExtraVanilla.Buffs.CoolMinionBuff.Description
+		Description: The example minion will fight for you
 	}
 }
 
 Items: {
-	CharmofLife: {
-		DisplayName: Charmof Life
-		Tooltip: ""
+	CharmOfLife: {
+		DisplayName: Charm Of Life
+		Tooltip:
+			'''
+			Provides life regeneration and reduces the cooldown of healing potions
+			After healing, spawns a flying heart that drops additional hearts after a time
+			'''
 	}
 
 	CritHeart: {
 		DisplayName: Crit Heart
-		Tooltip: ""
+		Tooltip: Converts life lost to critical strike chance up to 16%
 	}
 
 	CursedCape: {
 		DisplayName: Cursed Cape
-		Tooltip: ""
+		Tooltip: Belong to an death hunter, this cape will convert part of life lost bonus damage
 	}
 
 	Flashlight: {
 		DisplayName: Flashlight
-		Tooltip: ""
+		Tooltip: Light your way
 	}
 
 	LivingBoots: {
 		DisplayName: Living Boots
-		Tooltip: ""
+		Tooltip: Those boots will increase your speed when under half of your life
 	}
 
-	StoneofLife: {
-		DisplayName: Stoneof Life
-		Tooltip: ""
+	StoneOfLife: {
+		DisplayName: Stone Of Life
+		Tooltip: After healing, spawns a flying heart that drops additional hearts after a time
 	}
 
 	SuperFlashlight: {
 		DisplayName: Super Flashlight
-		Tooltip: ""
+		Tooltip:
+			'''
+			This flashlight is so powerful that you no longer need to equip it
+			Mark as favorite to take effect
+			'''
 	}
 
 	SuperInvocator: {
 		DisplayName: Super Invocator
-		Tooltip: ""
+		Tooltip:
+			'''
+			+6 minions slots
+			Increase summon damage by 15%
+			'''
 	}
 
 	WoodenBoots: {
 		DisplayName: Wooden Boots
-		Tooltip: ""
+		Tooltip: These sandals make you run a little faster
 	}
 
 	WoodenShield: {
 		DisplayName: Wooden Shield
-		Tooltip: ""
+		Tooltip:
+			'''
+			3 defense.
+			Gives a chance of not receive knockback
+			'''
 	}
 
 	LavaProofBreastplate: {
 		DisplayName: Lava Proof Breastplate
-		Tooltip: ""
+		Tooltip: Grant immunity to OnFire debuffs
 	}
 
 	LavaProofHelmet: {
 		DisplayName: Lava Proof Helmet
-		Tooltip: ""
+		Tooltip: Increase mining speed by 25%
 	}
 
 	LavaProofLeggings: {
 		DisplayName: Lava Proof Leggings
-		Tooltip: ""
+		Tooltip: Grants immunity to fire blocks
 	}
 
 	ColdSilk: {
 		DisplayName: Cold Silk
-		Tooltip: ""
+		Tooltip: Cold Silk
 	}
 
 	SpikyBossBag: {
@@ -108,22 +124,22 @@ Items: {
 
 	SpikySummon: {
 		DisplayName: Spiky Summon
-		Tooltip: ""
+		Tooltip: Summon Spiky
 	}
 
 	SuperBuilderPotion: {
 		DisplayName: Super Builder Potion
-		Tooltip: ""
+		Tooltip: Allow you to build super fast
 	}
 
 	DebugItem: {
 		DisplayName: Debug Item
-		Tooltip: ""
+		Tooltip: Change the time
 	}
 
 	HotSilk: {
 		DisplayName: Hot Silk
-		Tooltip: ""
+		Tooltip: Hot Silk
 	}
 
 	SpinningSword: {
@@ -133,12 +149,12 @@ Items: {
 
 	GameBoyJackItem: {
 		DisplayName: Game Boy Jack Item
-		Tooltip: ""
+		Tooltip: Old Gen Robot Head
 	}
 
 	JackItem: {
 		DisplayName: Jack Item
-		Tooltip: ""
+		Tooltip: New Gen Robot Head
 	}
 
 	Invocation: {

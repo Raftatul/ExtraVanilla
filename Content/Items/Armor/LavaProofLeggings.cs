@@ -7,11 +7,6 @@ namespace ExtraVanilla.Content.Items.Armor
 	[AutoloadEquip(EquipType.Legs)]
 	public class LavaProofLeggings : ModItem
 	{
-        public override void SetStaticDefaults()
-        {
-			// Tooltip.SetDefault("Grants immunity to fire blocks");
-        }
-
         public override void SetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 20);

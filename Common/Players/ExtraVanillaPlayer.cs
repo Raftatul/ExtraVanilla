@@ -28,8 +28,8 @@ namespace ExtraVanilla.Common.Players
 
         public override void OnEnterWorld()
         {
-            /*Main.NewText("[ExtraVenilla] Hey ! Considering giving feedback is a great way for me to improve this mod.", Color.Aqua);
-            Main.NewText("You can contact me (Raftatul) on the official Tmodloader discord server ! Have a great game !", Color.Aqua);*/
+            Main.NewText("[ExtraVenilla] Hey ! Considering giving feedback is a great way for me to improve this mod.", Color.Aqua);
+            Main.NewText("You can contact me (Raftatul) on the official Tmodloader discord server ! Have a great game !", Color.Aqua);
         }
 
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)

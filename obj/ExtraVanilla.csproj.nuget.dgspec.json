@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\ExtraVanilla.csproj": {}
+    "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\ExtraVanilla.csproj": {
+    "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\ExtraVanilla.csproj",
+        "projectUniqueName": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla.csproj",
         "projectName": "ExtraVanilla",
-        "projectPath": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\ExtraVanilla.csproj",
+        "projectPath": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla.csproj",
         "packagesPath": "C:\\Users\\rdaub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\ExtraVanilla\\obj\\",
+        "outputPath": "C:\\Users\\rdaub\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ExtraVanilla\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

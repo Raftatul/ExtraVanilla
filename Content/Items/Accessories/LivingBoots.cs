@@ -8,11 +8,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
 	public class LivingBoots : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// Tooltip.SetDefault("Those boots will increase your speed when under half of your life");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

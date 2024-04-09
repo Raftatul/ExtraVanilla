@@ -21,7 +21,6 @@ namespace ExtraVanilla.Content.NPCs.SpikyBoss
 
         public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Spiky");
 			Main.npcFrameCount[NPC.type] = 3;
 		}
 

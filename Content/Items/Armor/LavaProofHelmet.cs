@@ -7,11 +7,6 @@ namespace ExtraVanilla.Content.Items.Armor
 	[AutoloadEquip(EquipType.Head)]
 	public class LavaProofHelmet : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// Tooltip.SetDefault("Increase mining speed by 25%");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 20);

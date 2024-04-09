@@ -9,12 +9,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
 	public class Flashlight : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Flashlight");
-			// Tooltip.SetDefault("Light your way !");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

@@ -11,11 +11,6 @@ namespace ExtraVanilla.Content.Items
 {
     internal class DebugItem : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // Tooltip.SetDefault("Change the time");
-        }
-
         public override void SetDefaults()
         {
             Item.useTime = 1;

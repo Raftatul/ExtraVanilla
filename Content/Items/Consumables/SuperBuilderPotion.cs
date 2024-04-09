@@ -7,12 +7,6 @@ namespace ExtraVanilla.Content.Items.Consumables
 {
     public class SuperBuilderPotion : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Super Builder Potion");
-            // Tooltip.SetDefault("Allow you to build super fast !");
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

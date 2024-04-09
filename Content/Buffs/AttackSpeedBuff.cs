@@ -6,12 +6,6 @@ namespace ExtraVanilla.Content.Buffs
 {
 	public class AttackSpeedBuff : ModBuff
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("You have swift hand !");
-			// Description.SetDefault("Increase melee speed by 25%");
-		}
-
         public override void Update(Player player, ref int buffIndex)
 		{
 			

@@ -11,14 +11,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
     internal class WoodenShield : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Wooden Shield");
-            /* Tooltip.SetDefault("3 defense" +
-                "\nGives a chance of not receive knockback"); */
-            base.SetStaticDefaults();
-        }
-
         public override void SetDefaults()
         {
             Item.shopCustomPrice = Item.sellPrice(copper: 50);

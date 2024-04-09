@@ -15,9 +15,6 @@ namespace ExtraVanilla.Content.Projectiles.Minions
     {
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Example Minion");
-			// Description.SetDefault("The example minion will fight for you");
-
 			Main.buffNoSave[Type] = true; // This buff won't save when you exit the world
 			Main.buffNoTimeDisplay[Type] = true; // The time remaining won't display on this buff
 		}
@@ -39,11 +36,6 @@ namespace ExtraVanilla.Content.Projectiles.Minions
 
     internal class Invocation : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Jack staff");
-        }
-
         public override void SetDefaults()
         {
             Item.useAnimation = 20;

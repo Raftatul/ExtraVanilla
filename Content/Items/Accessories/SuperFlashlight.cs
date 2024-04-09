@@ -9,13 +9,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
 	public class SuperFlashlight : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Super Flashlight");
-			/* Tooltip.SetDefault("This flashlight is so powerful that you no longer need to equip it!" +
-				"\nMark as favorite to take effect"); */
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

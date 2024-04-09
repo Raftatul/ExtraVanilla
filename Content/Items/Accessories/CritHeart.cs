@@ -10,12 +10,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 	{
 		private int maxCritBonus = 16;
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Broken Heart");
-			// Tooltip.SetDefault("Converts life lost to critical strike chance up to 16%");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

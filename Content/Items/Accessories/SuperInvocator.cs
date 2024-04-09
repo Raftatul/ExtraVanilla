@@ -8,12 +8,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
 	public class SuperInvocator : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			/* Tooltip.SetDefault("+6 minions slots" 
-			                   + "\nIncrease summon damage by 15%"); */
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 30;

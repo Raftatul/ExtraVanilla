@@ -8,11 +8,6 @@ namespace ExtraVanilla.Content.Items
 {
 	public class ColdSilk : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Cold Silk");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

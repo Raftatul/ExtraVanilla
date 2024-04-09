@@ -7,9 +7,6 @@ namespace ExtraVanilla.Content.Pets.Jack
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName and Description are automatically set from the .lang files, but below is how it is done normally.
-            // DisplayName.SetDefault("Jack");
-            // Description.SetDefault("A \"cute\" little robot follow you !");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

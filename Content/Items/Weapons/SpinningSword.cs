@@ -9,12 +9,6 @@ namespace ExtraVanilla.Content.Items.Weapons
 {
     class SpinningSword : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Double Sword");
-            base.SetStaticDefaults();
-        }
-
         public override void SetDefaults()
         {
             Item.width = 400;

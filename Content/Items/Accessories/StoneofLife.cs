@@ -6,14 +6,8 @@ using System;
 
 namespace ExtraVanilla.Content.Items.Accessories
 {
-	public class StoneofLife : ModItem
+	public class StoneOfLife : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Stone Of Life");
-			// Tooltip.SetDefault("After healing, spawns a flying heart that drops additional hearts after a time");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;

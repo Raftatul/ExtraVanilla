@@ -20,7 +20,7 @@ namespace ExtraVanilla.Common.GlobalNPCs
             }
             if (npc.type == NPCID.Mimic)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.StoneofLife>(), 70));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.StoneOfLife>(), 70));
             }
         }
     }

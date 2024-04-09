@@ -13,13 +13,6 @@ namespace ExtraVanilla.Content.Items.Consumables
 {
     class SpikySummon : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Spiky Head");
-            // Tooltip.SetDefault("Summon Spiky");
-            base.SetDefaults();
-        }
-
         public override void SetDefaults()
         {
             Item.maxStack = 999;

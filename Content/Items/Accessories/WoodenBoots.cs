@@ -8,12 +8,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 {
 	public class WoodenBoots : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Wooden Sandal");
-			// Tooltip.SetDefault("These sandals make you run a little faster!");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 20;
