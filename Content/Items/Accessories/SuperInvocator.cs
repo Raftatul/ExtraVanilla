@@ -1,8 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using System;
 
 namespace ExtraVanilla.Content.Items.Accessories
 {
@@ -22,16 +20,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 		{
 			player.maxMinions += 6;
 			player.GetDamage(DamageClass.Summon) += 0.15f;
-		}
-		
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-				.AddIngredient(ItemID.SoulofLight, 15)
-				.AddIngredient(ItemID.GreenThread, 6)
-				.AddIngredient(ItemID.WizardHat, 1)
-				.AddTile(TileID.CrystalBall)
-				.Register();
 		}
 	}
 }

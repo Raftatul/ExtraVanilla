@@ -41,8 +41,9 @@ namespace ExtraVanilla.Content.NPCs.SpikyBoss
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1; 
 			//npc.DeathSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/TestBossDeath");
-			Music = MusicID.Boss2;
-		}
+			Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/SpikyTheme");
+
+        }
 
 		public override void AI()
 		{

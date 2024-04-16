@@ -1,9 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using System;
 using Microsoft.Xna.Framework;
+using Terraria.GameContent;
 
 namespace ExtraVanilla.Content.Items.Accessories
 {
@@ -39,13 +38,22 @@ namespace ExtraVanilla.Content.Items.Accessories
 
         public override void AddRecipes()
         {
+			
 			CreateRecipe()
 				.AddIngredient(ItemID.ShadowOrb, 1)
+				.AddIngredient(ItemID.ShinePotion, 1)
+				.AddIngredient(ModContent.ItemType<Flashlight>(), 1)
+				.AddTile(TileID.TinkerersWorkbench)
+                .AddDecraftCondition(Condition.CorruptWorld)
+                .Register();
+
+            CreateRecipe()
 				.AddIngredient(ItemID.CrimsonHeart, 1)
 				.AddIngredient(ItemID.ShinePotion, 1)
 				.AddIngredient(ModContent.ItemType<Flashlight>(), 1)
 				.AddTile(TileID.TinkerersWorkbench)
-				.Register();
-		}
+                .AddDecraftCondition(Condition.CrimsonWorld)
+                .Register();
+        }
     }
 }
