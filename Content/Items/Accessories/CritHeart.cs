@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 using System;
 
 namespace ExtraVanilla.Content.Items.Accessories
@@ -17,7 +16,8 @@ namespace ExtraVanilla.Content.Items.Accessories
 			Item.accessory = true;
 			Item.hasVanityEffects = true;
 			Item.value = Item.sellPrice(silver: 30);
-			Item.rare = ItemRarityID.LightRed;
+			Item.rare = ItemRarityID.Expert;
+			Item.expert = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

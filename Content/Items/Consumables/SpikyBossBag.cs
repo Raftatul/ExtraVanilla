@@ -24,7 +24,7 @@ namespace ExtraVanilla.Content.Items.Consumables
             Item.width = 32;
             Item.height = 32;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.Purple;
             Item.expert = true;
         }
 
@@ -33,14 +33,13 @@ namespace ExtraVanilla.Content.Items.Consumables
             return true;
         }
 
-
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.CritHeart>(), 7));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.LivingBoots>(), 7));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Pets.Jack.JackItem>(), 7));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.Flashlight>(), 7));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Accessories.CritHeart>(), 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pets.Jack.JackItem>(), 10));
+            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.LivingBoots>(), 30));
+            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.Flashlight>(), 20));
+            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Weapons.SpinningSword>(), 50));
         }
 
        // public override void OpenBossBag(Player player)

@@ -28,13 +28,14 @@ namespace ExtraVanilla.Content.Projectiles
             Projectile.width = 42;
             Projectile.height = 42;
             Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.friendly = true;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 5;
+
+            Projectile.scale = 0.85f;
 
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = effectCount;
@@ -53,7 +54,7 @@ namespace ExtraVanilla.Content.Projectiles
         {
             base.OnHitNPC(target, hit, damageDone);
 
-            startVelocity = Projectile.velocity * 0.1f;
+            startVelocity = Vector2.Zero;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -83,7 +84,7 @@ namespace ExtraVanilla.Content.Projectiles
 
         public override void AI()
         {
-            float num = 60f;
+            float num = 20f;
             Player player = Main.player[Projectile.owner];
 
             if (!returnToPlayer)
@@ -93,7 +94,7 @@ namespace ExtraVanilla.Content.Projectiles
                 returnToPlayer = Projectile.ai[0] > num;
                 Projectile.tileCollide = Projectile.ai[0] < num;
 
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, startVelocity, 0.1f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, startVelocity, 0.25f);
             }
             else
             {

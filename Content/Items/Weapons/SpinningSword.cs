@@ -27,6 +27,8 @@ namespace ExtraVanilla.Content.Items.Weapons
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
 
+            Item.rare = ItemRarityID.Orange;
+
             Item.shootSpeed = 20f;
             Item.shoot = ModContent.ProjectileType<SpinningSwordProjectile>();
         }
@@ -34,15 +36,6 @@ namespace ExtraVanilla.Content.Items.Weapons
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Wood, 20)
-                .AddRecipeGroup("IronBar", 15)
-                .AddTile(TileID.Anvils)
-                .Register();
         }
     }
 }
