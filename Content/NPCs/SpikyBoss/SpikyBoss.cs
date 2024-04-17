@@ -190,15 +190,11 @@ namespace ExtraVanilla.Content.NPCs.SpikyBoss
             if (!Main.expertMode)
             {
 	            Item.NewItem(NPC.GetSource_FromAI(), NPC.position, ModContent.ItemType<Items.Accessories.Flashlight>(), 1);
-				if (Main.rand.Next(0, 3) == 1)
-				{
-					Item.NewItem(NPC.GetSource_FromAI(), NPC.position, ModContent.ItemType<Items.Accessories.CritHeart>());
-				}
-				if (Main.rand.Next(0, 3) == 1)
+				if (Main.rand.NextBool(5))
 				{
 					Item.NewItem(NPC.GetSource_FromAI(), NPC.position, ModContent.ItemType<Items.Accessories.LivingBoots>());
 				}
-				if (Main.rand.Next(0, 10) == 1)
+				if (Main.rand.NextBool(2))
 				{
 					Item.NewItem(NPC.GetSource_FromAI(), NPC.position, ModContent.ItemType<Pets.Jack.JackItem>());
 				}

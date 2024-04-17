@@ -35,10 +35,11 @@ namespace ExtraVanilla.Content.Items.Consumables
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
+            itemLoot.Add(ItemDropRule.Coins(50000, true));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Accessories.CritHeart>(), 1));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pets.Jack.JackItem>(), 10));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.LivingBoots>(), 30));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.Flashlight>(), 20));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pets.Jack.JackItem>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Accessories.Flashlight>(), 2));
+            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.LivingBoots>(), 5));
             itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Weapons.SpinningSword>(), 50));
         }
 
