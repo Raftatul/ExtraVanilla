@@ -38,7 +38,6 @@ namespace ExtraVanilla.Content.Items.Accessories
 
         public override void AddRecipes()
         {
-			
 			CreateRecipe()
 				.AddIngredient(ItemID.ShadowOrb, 1)
 				.AddIngredient(ItemID.ShinePotion, 1)

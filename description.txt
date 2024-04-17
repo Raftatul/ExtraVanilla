@@ -1,12 +1,13 @@
 Mod in development.
 
-Last update : New Sprite for the super invocator. Misc.
+Last update : 
+- Fix bug that make boss go crazy
+- Rework spinning sword
 
 This mod adds:
 - 1 boss
 - 1 weapon
 - 1 armor
-- 10 accessories
-- 5 vanilla crafts
-- 1 pet
-- 1 buffs
+- 9 accessories
+- 2 pets
+- 1 potion

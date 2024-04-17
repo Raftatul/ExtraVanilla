@@ -144,7 +144,7 @@ Items: {
 
 	SpinningSword: {
 		DisplayName: Spinning Sword
-		Tooltip: ""
+		Tooltip: Throw a blade that slow upon hit ennemy
 	}
 
 	GameBoyJackItem: {
