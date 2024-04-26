@@ -17,7 +17,7 @@ namespace ExtraVanilla.Content.Projectiles
 		private int index = 0;
 		private int walkDistance = 10;
 
-		private List<Vector2> targetPos;
+		private List<Vector2> targetPos = new List<Vector2>();
 		private Vector2 spawnPoint;
 
 		public override void SetStaticDefaults()
@@ -61,7 +61,6 @@ namespace ExtraVanilla.Content.Projectiles
             base.OnSpawn(source);
 
             spawnPoint = Main.player[Projectile.owner].position;
-            targetPos = new List<Vector2>();
             targetPos.Add(spawnPoint + new Vector2(-1, -1) * walkDistance);
             targetPos.Add(spawnPoint + new Vector2(1, 1) * walkDistance);
             targetPos.Add(spawnPoint + new Vector2(1, -1) * walkDistance);
@@ -70,6 +69,9 @@ namespace ExtraVanilla.Content.Projectiles
 
         public override void AI()
         {
+			if (targetPos.Count == 0)
+				return;
+
 			int distance = ((int)Vector2.Distance(targetPos[index], Projectile.Center));
 			if (distance <= 1)
             {
@@ -102,14 +104,9 @@ namespace ExtraVanilla.Content.Projectiles
 
 		public override void OnKill(int timeLeft)
 		{
-			Player playerOwner = Main.player[Projectile.owner];
-
-			int amount = (playerOwner.GetModPlayer<Common.Players.ExtraVanillaPlayer>().HealReceive / 2) / 20;
-
-			amount = Math.Max(amount, 1);
-
-			for (int i = 0; i < amount; i++)
+			for (int i = 0; i < 3; i++)
             {
+				Main.NewText("?");
 				Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.getRect(), ItemID.Heart);
             }
 

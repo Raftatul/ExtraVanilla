@@ -2,6 +2,7 @@ Mod in development.
 
 Last update : 
 - Bring back the old spinning sword
+- Fix flying heart not working properly in multiplayer
 
 This mod adds:
 - 1 boss

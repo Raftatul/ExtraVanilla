@@ -21,6 +21,8 @@ namespace ExtraVanilla.Content.Items
 
         public override bool? UseItem(Player player)
         {
+            player.ClearBuff(BuffID.PotionSickness);
+
             if(Main.netMode == NetmodeID.Server || Main.netMode == NetmodeID.SinglePlayer)
             {
                 if (Main.dayTime)

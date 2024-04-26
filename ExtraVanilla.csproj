@@ -8,7 +8,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Content\Projectiles\SpinningSwordProjectile.png" />
+    <None Remove="Content\Projectiles\ChakramProjectile.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
