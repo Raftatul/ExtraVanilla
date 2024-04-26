@@ -142,9 +142,9 @@ Items: {
 		Tooltip: Hot Silk
 	}
 
-	SpinningSword: {
-		DisplayName: Spinning Sword
-		Tooltip: Throw a blade that slow upon hit ennemy
+	Chakram: {
+		DisplayName: Chakram
+		Tooltip: Throw a blade that slow upon ennemy hit
 	}
 
 	GameBoyJackItem: {
@@ -161,6 +161,11 @@ Items: {
 		DisplayName: Invocation
 		Tooltip: ""
 	}
+
+	SpinningSword: {
+		DisplayName: Spinning Sword
+		Tooltip: Upgrading this weapon seemed like a smart idea to the Gobelin Tinkerer.
+	}
 }
 
 NPCs: {
@@ -169,7 +174,7 @@ NPCs: {
 }
 
 Projectiles: {
-	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
+	ChakramProjectile.DisplayName: Chakram Projectile
 	GameBoyJack.DisplayName: Game Boy Jack
 	Jack.DisplayName: Jack
 	FireBall.DisplayName: Fire Ball
@@ -177,4 +182,5 @@ Projectiles: {
 	CoolMinion.DisplayName: Cool Minion
 	ProjHeartBonus.DisplayName: Proj Heart Bonus
 	SpikeProjectile.DisplayName: Spike Projectile
+	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
 }

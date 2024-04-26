@@ -17,8 +17,6 @@ namespace ExtraVanilla.Content.Projectiles
 		private int index = 0;
 		private int walkDistance = 10;
 
-		private bool spawn;
-
 		private List<Vector2> targetPos;
 		private Vector2 spawnPoint;
 
@@ -58,18 +56,20 @@ namespace ExtraVanilla.Content.Projectiles
 			return base.PreDraw(ref lightColor);
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            base.OnSpawn(source);
+
+            spawnPoint = Main.player[Projectile.owner].position;
+            targetPos = new List<Vector2>();
+            targetPos.Add(spawnPoint + new Vector2(-1, -1) * walkDistance);
+            targetPos.Add(spawnPoint + new Vector2(1, 1) * walkDistance);
+            targetPos.Add(spawnPoint + new Vector2(1, -1) * walkDistance);
+            targetPos.Add(spawnPoint + new Vector2(-1, 1) * walkDistance);
+        }
+
         public override void AI()
         {
-			if (!spawn)
-			{
-				spawn = true;
-				spawnPoint = Main.player[Projectile.owner].position;
-				targetPos = new List<Vector2>();
-				targetPos.Add(spawnPoint + new Vector2(-1, -1) * walkDistance);
-				targetPos.Add(spawnPoint + new Vector2(1, 1) * walkDistance);
-				targetPos.Add(spawnPoint + new Vector2(1, -1) * walkDistance);
-				targetPos.Add(spawnPoint + new Vector2(-1, 1) * walkDistance);
-			}
 			int distance = ((int)Vector2.Distance(targetPos[index], Projectile.Center));
 			if (distance <= 1)
             {
@@ -103,15 +103,16 @@ namespace ExtraVanilla.Content.Projectiles
 		public override void OnKill(int timeLeft)
 		{
 			Player playerOwner = Main.player[Projectile.owner];
+
 			int amount = (playerOwner.GetModPlayer<Common.Players.ExtraVanillaPlayer>().HealReceive / 2) / 20;
-			if( amount < 1) 
-			{
-				amount = 1;
-            }
+
+			amount = Math.Max(amount, 1);
+
 			for (int i = 0; i < amount; i++)
             {
-				Item.NewItem(Projectile.GetSource_FromAI(), Projectile.getRect(), ItemID.Heart);
+				Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.getRect(), ItemID.Heart);
             }
+
 			for (int i = 0; i < 50; i++)
 			{
 				Vector2 direction = new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * 5;

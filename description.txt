@@ -1,8 +1,7 @@
 Mod in development.
 
 Last update : 
-- Fix bug that make boss go crazy
-- Rework spinning sword
+- Bring back the old spinning sword
 
 This mod adds:
 - 1 boss

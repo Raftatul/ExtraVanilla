@@ -40,7 +40,7 @@ namespace ExtraVanilla.Content.Items.Consumables
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pets.Jack.JackItem>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Accessories.Flashlight>(), 2));
             itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Accessories.LivingBoots>(), 5));
-            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Weapons.SpinningSword>(), 50));
+            itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Weapons.Chakram>(), 50));
         }
 
        // public override void OpenBossBag(Player player)

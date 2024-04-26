@@ -13,7 +13,6 @@ namespace ExtraVanilla.Content.NPCs.SpikyBoss
 	public class SpikyBoss : ModNPC
 	{
 		private int frame = 0;
-		private int shootSpeed = 30;
 
 		private int ai;
 
