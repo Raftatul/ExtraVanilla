@@ -106,7 +106,6 @@ namespace ExtraVanilla.Content.Projectiles
 		{
 			for (int i = 0; i < 3; i++)
             {
-				Main.NewText("?");
 				Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.getRect(), ItemID.Heart);
             }
 

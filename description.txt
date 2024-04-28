@@ -1,8 +1,9 @@
 Mod in development.
 
+Boss music by GTAudio : https://www.gtaudio.ca/
+
 Last update : 
-- Bring back the old spinning sword
-- Fix flying heart not working properly in multiplayer
+- Remove text debug
 
 This mod adds:
 - 1 boss
