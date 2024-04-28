@@ -7,7 +7,7 @@ Last update :
 
 This mod adds:
 - 1 boss
-- 1 weapon
+- 2 weapons
 - 1 armor
 - 9 accessories
 - 2 pets

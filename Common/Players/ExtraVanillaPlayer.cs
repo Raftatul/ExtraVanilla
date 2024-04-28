@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using ExtraVanilla.Common.Configs;
 
 namespace ExtraVanilla.Common.Players
 {
@@ -20,10 +21,19 @@ namespace ExtraVanilla.Common.Players
         public int HealReceive;
         public float MissingHealth;
 
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModContent.GetInstance<ExtraVanillaClientConfig>().startMessage;
+        }
+
         public override void OnEnterWorld()
         {
-            Main.NewText("[ExtraVenilla] Hey ! Considering giving feedback is a great way for me to improve this mod.", Color.Aqua);
-            Main.NewText("You can contact me (Raftatul) on the official Tmodloader discord server ! Have a great game !", Color.Aqua);
+            if (ModContent.GetInstance<ExtraVanillaClientConfig>().startMessage)
+            {
+                Main.NewText("[ExtraVenilla] Hey ! Considering giving feedback is a great way for me to improve this mod.", Color.Aqua);
+                Main.NewText("You can contact me (Raftatul) on the official Tmodloader discord server ! Have a great game !", Color.Aqua);
+                Main.NewText("You can disable this message on the extra vanilla mod config", Color.Red);
+            }
         }
 
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)

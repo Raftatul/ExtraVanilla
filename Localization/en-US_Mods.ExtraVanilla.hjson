@@ -184,3 +184,14 @@ Projectiles: {
 	SpikeProjectile.DisplayName: Spike Projectile
 	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
 }
+
+Configs: {
+	ExtraVanillaClientConfig: {
+		DisplayName: Extra Vanilla Client Config
+
+		startMessage: {
+			Label: start Message
+			Tooltip: Allow the start message to be print
+		}
+	}
+}
