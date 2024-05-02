@@ -5,6 +5,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.DataStructures;
+using System;
 
 namespace ExtraVanilla.Content.Projectiles
 {
@@ -18,6 +19,8 @@ namespace ExtraVanilla.Content.Projectiles
 
         private Vector2 startVelocity;
 
+        private float forwardTime = 20f;
+
         //Visual
         private int effectCount = 7;
 
@@ -26,9 +29,11 @@ namespace ExtraVanilla.Content.Projectiles
             Projectile.width = 42;
             Projectile.height = 42;
             Projectile.penetrate = -1;
-            Projectile.tileCollide = true;
-            Projectile.DamageType = DamageClass.Melee;
+
             Projectile.friendly = true;
+            Projectile.tileCollide = true;
+
+            Projectile.DamageType = DamageClass.Melee;
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 5;
@@ -82,15 +87,14 @@ namespace ExtraVanilla.Content.Projectiles
 
         public override void AI()
         {
-            float num = 20f;
             Player player = Main.player[Projectile.owner];
 
             if (!returnToPlayer)
             {
                 Projectile.ai[0] += 1f;
 
-                returnToPlayer = Projectile.ai[0] > num;
-                Projectile.tileCollide = Projectile.ai[0] < num;
+                returnToPlayer = Projectile.ai[0] > forwardTime;
+                Projectile.tileCollide = Projectile.ai[0] < forwardTime;
 
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, startVelocity, 0.25f);
             }

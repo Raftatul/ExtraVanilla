@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using ExtraVanilla.Content.Projectiles;
+using Microsoft.Xna.Framework;
 
 namespace ExtraVanilla.Content.Items.Weapons
 {
@@ -9,11 +10,8 @@ namespace ExtraVanilla.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-            Item.width = 42;
-            Item.height = 42;
-
-            Item.damage = 12; 
-            Item.knockBack = 2;
+            Item.damage = 24; 
+            Item.knockBack = 5;
             
             Item.useAnimation = 15;
             Item.useTime = 15;
@@ -37,6 +35,12 @@ namespace ExtraVanilla.Content.Items.Weapons
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            position += new Vector2(0, -10);
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
     }
 }
