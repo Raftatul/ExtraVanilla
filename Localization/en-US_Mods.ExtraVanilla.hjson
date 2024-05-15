@@ -166,6 +166,16 @@ Items: {
 		DisplayName: Spinning Sword
 		Tooltip: Upgrading this weapon seemed like a smart idea to the Gobelin Tinkerer.
 	}
+
+	MagicRod: {
+		DisplayName: Magic Rod
+		Tooltip: ""
+	}
+
+	ExampleDye: {
+		DisplayName: Example Dye
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -183,6 +193,7 @@ Projectiles: {
 	ProjHeartBonus.DisplayName: Proj Heart Bonus
 	SpikeProjectile.DisplayName: Spike Projectile
 	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
+	MagicRodHoldout.DisplayName: Magic Rod Holdout
 }
 
 Configs: {
@@ -195,3 +206,5 @@ Configs: {
 		}
 	}
 }
+
+UI.ExampleResource: Magic Rod Cooldown

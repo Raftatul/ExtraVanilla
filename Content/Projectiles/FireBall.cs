@@ -1,75 +1,119 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
 
 namespace ExtraVanilla.Content.Projectiles
 {
-	public class FireBall : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("FireBall");     //The English name of the projectile
-			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;    //The length of old position to be recorded
-			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;        //The recording mode
-		}
+    public class FireBall : ModProjectile
+    {
+        private int explosionRadius = 30;
 
-		public override void SetDefaults()
-		{
-			Projectile.width = 50;              //The width of projectile hitbox 
-			Projectile.height = 50;			// The height of projectile hitbox
-			Projectile.aiStyle = 1;             //The ai style of the projectile, please reference the source code of Terraria
-			Projectile.friendly = false;         //Can the projectile deal damage to enemies?
-			Projectile.hostile = true;         //Can the projectile deal damage to the player?
-			Projectile.penetrate = 1;           //How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-			Projectile.timeLeft = 150;          //The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255;             //The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
-			Projectile.light = 0.5f;            //How much light emit around the projectile
-			Projectile.ignoreWater = false;          //Does the projectile's speed be influenced by water?
-			Projectile.tileCollide = false;          //Can the projectile collide with tiles?
-			Projectile.extraUpdates = 1;            //Set to above 0 if you want the projectile to update multiple time in a frame
-			AIType = ProjectileID.Bullet;           //Act exactly like default Bullet
-			Projectile.netUpdate = true;
-		}
+        private int effectCount = 120;
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
-		{
-			//If collide with tile, reduce the penetrate.
-			//So the projectile can reflect at most 5 times
-			Projectile.penetrate--;
-			if (Projectile.penetrate == 0)
-			{
-				Projectile.Kill();
-			}
-			return false;
-		}
-
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        public override void SetStaticDefaults()
         {
-            return base.Colliding(projHitbox, targetHitbox);
+            Main.projFrames[Projectile.type] = 4;
+
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = effectCount;
         }
 
-        /*public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			//Redraw the projectile with the color not influenced by light
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
-			for (int k = 0; k < projectile.oldPos.Length; k++)
-			{
-				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
-			}
-			return true;
-		}*/
+        public override void SetDefaults()
+        {
+            Projectile.width = 32;              //The width of Projectile hitbox 
+            Projectile.height = 32;         // The height of Projectile hitbox
+            Projectile.friendly = true;         //Can the Projectile deal damage to enemies?
+            Projectile.hostile = true;         //Can the Projectile deal damage to enemies?
+            Projectile.light = 0.5f;            //How much light emit around the Projectile
+            Projectile.ignoreWater = false;          //Does the Projectile's speed be influenced by water?
+            Projectile.tileCollide = true;          //Can the Projectile collide with tiles?
+        }
 
-		public override void OnKill(int timeLeft)
-		{
-			// This code and the similar code above in OnTileCollide spawn dust from the tiles collided with. SoundID.Item10 is the bounce sound you hear.
-			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-		}
-	}
+        public override bool PreDraw(ref Color lightColor)
+        {
+            var texture = TextureAssets.Projectile[Type].Value;
+            var drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+
+            for (int i = 0; i < effectCount; i++)
+            {
+                Vector2 drawPos = Projectile.oldPos[i] - Main.screenPosition + drawOrigin;
+                float alpha = (1f / i);
+
+                Main.EntitySpriteDraw(texture, drawPos, new Rectangle(0, Projectile.frame * Projectile.height, Projectile.width, Projectile.height), Projectile.GetAlpha(lightColor) * alpha, Projectile.rotation, drawOrigin, Projectile.scale,
+                    SpriteEffects.None);
+            }
+
+            return true;
+        }
+
+        public override void AI()
+        {
+            Projectile.rotation -= MathHelper.ToRadians(6);
+        }
+
+        public override bool PreKill(int timeLeft)
+        {
+            Explode();
+
+            return true;
+        }
+
+        private void Explode()
+        {
+            // If the Projectile dies without hitting an enemy, crate a small explosion that hits all enemies in the area.
+            if (Projectile.penetrate == 1)
+            {
+                // Makes the Projectile hit all enemies as it circunvents the penetrate limit.
+                Projectile.maxPenetrate = -1;
+                Projectile.penetrate = -1;
+
+                Vector2 oldSize = Projectile.Size;
+                // Resize the Projectile hitbox to be bigger.
+                Projectile.position = Projectile.Center;
+                Projectile.Size += new Vector2(explosionRadius * 16);
+                Projectile.Center = Projectile.position;
+
+                Projectile.tileCollide = false;
+                Projectile.velocity *= 0.01f;
+                // Damage enemies inside the hitbox area
+                Projectile.Damage();
+                Projectile.scale = 0.01f;
+
+                //Resize the hitbox to its original size
+                Projectile.position = Projectile.Center;
+                Projectile.Size = new Vector2(10);
+                Projectile.Center = Projectile.position;
+            }
+
+            for (int i = 0; i < 100; i++)
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position - Projectile.velocity, Projectile.width, Projectile.height, DustID.TreasureSparkle, 0, 0, 100, Color.Lime, 0.8f);
+                dust.noGravity = true;
+                dust.velocity *= 2f;
+                dust = Dust.NewDustDirect(Projectile.position - Projectile.velocity, Projectile.width, Projectile.height, DustID.TreasureSparkle, 0f, 0f, 100, Color.Lime, 0.5f);
+            }
+
+            int minTileX = (int)(Projectile.Center.X / 16f - explosionRadius);
+            int maxTileX = (int)(Projectile.Center.X / 16f + explosionRadius);
+            int minTileY = (int)(Projectile.Center.Y / 16f - explosionRadius);
+            int maxTileY = (int)(Projectile.Center.Y / 16f + explosionRadius);
+
+            Projectile.ExplodeTiles(Projectile.Center, explosionRadius, minTileX, maxTileX, minTileY, maxTileY, false);
+
+            SoundEngine.PlaySound(new SoundStyle("ExtraVanilla/Assets/Sounds/Projectiles/Explosion", SoundType.Sound), Projectile.position);
+
+            PunchCameraModifier modifier = new PunchCameraModifier(Projectile.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 60, 1000f, FullName);
+            Main.instance.CameraModifiers.Add(modifier);
+
+            Lighting.AddLight(Projectile.position, 255, 255, 255);
+
+            Console.WriteLine("EXPLOSION");
+        }
+    }
 }

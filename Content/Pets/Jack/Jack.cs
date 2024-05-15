@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using ExtraVanilla.Common.Players;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,8 +9,13 @@ namespace ExtraVanilla.Content.Pets.Jack
 {
     public class Jack : ModProjectile
     {
-        private int animationStep = 0;
+        private int _animationStep = 0;
         private static int _delay = 300;
+
+        private Player _playerOwner;
+        private ExtraVanillaPlayer _modPlayerOwner;
+
+        private bool _HalfLifeFlag = false;
 
         public override void SetStaticDefaults()
         {
@@ -20,27 +28,31 @@ namespace ExtraVanilla.Content.Pets.Jack
             Projectile.CloneDefaults(ProjectileID.DD2PetGato);
             Projectile.width = 42;
             Projectile.height = 26;
-            animationStep = 0;
+            _animationStep = 0;
             Projectile.netUpdate = true;            
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            WritePopup("Let's go on an adventure!", 300, Color.LightCoral);
+
+            _playerOwner = Main.player[Projectile.owner];
+            _modPlayerOwner = _playerOwner.GetModPlayer<Common.Players.ExtraVanillaPlayer>();
         }
 
         public override bool PreAI()
         {
-            Player player = Main.player[Projectile.owner];
-            player.petFlagDD2Gato = false;
+            _playerOwner.petFlagDD2Gato = false;
             return true;
         }
 
         public override void AI()
         {
-            Player player = Main.player[Projectile.owner];
-
-            Common.Players.ExtraVanillaPlayer modPlayer = player.GetModPlayer<Common.Players.ExtraVanillaPlayer>();
-            if (player.dead)
+            if (_playerOwner.dead)
             {
-                modPlayer.JackPet = false;
+                _modPlayerOwner.JackPet = false;
             }
-            if (modPlayer.JackPet)
+            if (_modPlayerOwner.JackPet)
             {
                 Projectile.timeLeft = 2;
             }
@@ -55,16 +67,28 @@ namespace ExtraVanilla.Content.Pets.Jack
                 }
             }
 
+            if (_playerOwner.statLife <= _modPlayerOwner.GetPlayerHalfLife(_playerOwner))
+            {
+                if (!_HalfLifeFlag)
+                {
+                    _HalfLifeFlag = true;
+
+                    WritePopup("Look at your health bar :)", 300, Color.LightCoral);
+                }
+            }
+            else
+                _HalfLifeFlag = false;
+
             //Animation
             if (bossFind != null && bossFind.active)
             {
-                animationStep++;
-                if (animationStep >= _delay)
+                _animationStep++;
+                if (_animationStep >= _delay)
                 {
                     Projectile.frame = 5;
-                    if (animationStep >= _delay + 10)
+                    if (_animationStep >= _delay + 10)
                     {
-                        animationStep = 0;
+                        _animationStep = 0;
                     }
                 }
                 else
@@ -74,13 +98,13 @@ namespace ExtraVanilla.Content.Pets.Jack
             }
             else if (Main.bloodMoon || Main.invasionProgressAlpha != 0 || Main.eclipse)
             {
-                animationStep++;
-                if(animationStep >= _delay)
+                _animationStep++;
+                if(_animationStep >= _delay)
                 {
                     Projectile.frame = 3;
-                    if(animationStep >= _delay + 10)
+                    if(_animationStep >= _delay + 10)
                     {
-                        animationStep = 0;
+                        _animationStep = 0;
                     }
                 }
                 else
@@ -88,15 +112,15 @@ namespace ExtraVanilla.Content.Pets.Jack
                     Projectile.frame = 2;
                 }
             }
-            else if (Main.player[Projectile.owner].statLife <= Main.player[Projectile.owner].GetModPlayer<Common.Players.ExtraVanillaPlayer>().GetPlayerHalfLife(Main.player[Projectile.owner]))
+            else if (_playerOwner.statLife <= _modPlayerOwner.GetPlayerHalfLife(_playerOwner))
             {
-                animationStep++;
-                if (animationStep >= _delay)
+                _animationStep++;
+                if (_animationStep >= _delay)
                 {
                     Projectile.frame = 7;
-                    if (animationStep >= _delay + 10)
+                    if (_animationStep >= _delay + 10)
                     {
-                        animationStep = 0;
+                        _animationStep = 0;
                     }
                 }
                 else
@@ -106,13 +130,13 @@ namespace ExtraVanilla.Content.Pets.Jack
             }
             else
             {
-                animationStep++;
-                if (animationStep >= _delay)
+                _animationStep++;
+                if (_animationStep >= _delay)
                 {
                     Projectile.frame = 1;
-                    if (animationStep >= _delay + 5)
+                    if (_animationStep >= _delay + 5)
                     {
-                        animationStep = 0;
+                        _animationStep = 0;
                     }
                 }
                 else
@@ -120,6 +144,16 @@ namespace ExtraVanilla.Content.Pets.Jack
                     Projectile.frame = 0;
                 }
             }
+        }
+
+        private void WritePopup(string text, int duration, Color color, Vector2 vel = default)
+        {
+            AdvancedPopupRequest request = default;
+            request.Text = text;
+            request.DurationInFrames = duration;
+            request.Velocity = vel;
+            request.Color = color;
+            PopupText.NewText(request, Projectile.position);
         }
     }
 }

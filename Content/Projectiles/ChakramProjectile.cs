@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
+using Terraria;
 using Terraria.DataStructures;
-using System;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExtraVanilla.Content.Projectiles
 {
@@ -24,6 +23,12 @@ namespace ExtraVanilla.Content.Projectiles
         //Visual
         private int effectCount = 7;
 
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = effectCount;
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 42;
@@ -39,9 +44,6 @@ namespace ExtraVanilla.Content.Projectiles
             Projectile.localNPCHitCooldown = 5;
 
             Projectile.scale = 0.85f;
-
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = effectCount;
         }
 
         public override void OnSpawn(IEntitySource source)

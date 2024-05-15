@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ExtraVanilla.Common.Configs;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ExtraVanilla.Common.Configs;
 
 namespace ExtraVanilla.Common.Players
 {
@@ -18,8 +18,13 @@ namespace ExtraVanilla.Common.Players
         public bool LivingBoots;
         public bool WoodenShield;
 
+        public bool CanUseMagicRod = true;
+
         public int HealReceive;
         public float MissingHealth;
+
+        public float MagicRodCooldown = 0;
+        public float MaxMagicRodCooldown = 18000;
 
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -67,9 +72,21 @@ namespace ExtraVanilla.Common.Players
                     Main.dust[dust].velocity *= 1f;
                 }
             }
+
             if (SuperBuilderBuffer)
             {
                 Player.ClearBuff(BuffID.Builder);
+            }
+
+            if (!CanUseMagicRod)
+            {
+                MagicRodCooldown++;
+
+                if (MagicRodCooldown == MaxMagicRodCooldown)
+                {
+                    CanUseMagicRod = true;
+                    MagicRodCooldown = 0;
+                }
             }
         }
 
