@@ -169,7 +169,7 @@ Items: {
 
 	MagicRod: {
 		DisplayName: Magic Rod
-		Tooltip: ""
+		Tooltip: Cast a huge explosion, drain health when no mana available
 	}
 
 	ExampleDye: {
@@ -194,6 +194,7 @@ Projectiles: {
 	SpikeProjectile.DisplayName: Spike Projectile
 	SpinningSwordProjectile.DisplayName: Spinning Sword Projectile
 	MagicRodHoldout.DisplayName: Magic Rod Holdout
+	Laser.DisplayName: Laser
 }
 
 Configs: {

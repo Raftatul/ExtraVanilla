@@ -1,5 +1,7 @@
 ﻿using ExtraVanilla.Content.Dusts;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -10,11 +12,13 @@ namespace ExtraVanilla.Content.Projectiles
 {
     public class MagicRodHoldout : ModProjectile
     {
+        // This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
+        public const float MaxCharge = 180f;
+
         // The vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
         private const int NumAnimationFrames = 1;
 
-        // This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
-        public const float MaxCharge = 180f;
+        private static Asset<Texture2D> _laserTexture;
 
         // This property encloses the internal AI variable Projectile.ai[0]. It makes the code easier to read.
         private float FrameCounter
@@ -23,16 +27,31 @@ namespace ExtraVanilla.Content.Projectiles
             set => Projectile.ai[0] = value;
         }
 
-        private const float AimResponsiveness = 0.08f;
+        //The distance charge particle from the player center
+        private const float MOVE_DISTANCE = 60f;
+
+        // The actual distance is stored in the ai0 field
+        // By making a property to handle this it makes our life easier, and the accessibility more readable
+        public float Distance
+        {
+            get => Projectile.ai[1];
+            set => Projectile.ai[1] = value;
+        }
+
+        private const float AimResponsiveness = 0.8f;
 
         private Vector2 headPos;
 
         private int dust = -1;
 
+        private int incantationDust = -1;
+
         private int castDuration = 810;
 
         public override void SetStaticDefaults()
         {
+            _laserTexture = ModContent.Request<Texture2D>("ExtraVanilla/Content/Projectiles/Laser");
+
             Main.projFrames[Projectile.type] = NumAnimationFrames;
 
             // Signals to Terraria that this Projectile requires a unique identifier beyond its index in the Projectile array.
@@ -49,6 +68,13 @@ namespace ExtraVanilla.Content.Projectiles
             Projectile.hostile = false;
             Projectile.height = 95;
             Projectile.width = 27;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            //DrawLaser(Main.spriteBatch, _laserTexture.Value, Main.player[Projectile.owner].Center, Projectile.velocity, 10, -1.57f, 1f, 1000f, Color.White, (int)MOVE_DISTANCE);
+
+            return true;
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -82,29 +108,38 @@ namespace ExtraVanilla.Content.Projectiles
                     dust = Dust.NewDust(headPos, 1, 1, ModContent.DustType<StarPower>());
                 Main.dust[dust].position = headPos;
 
+                if (incantationDust == -1)
+                    incantationDust = Dust.NewDust(headPos, 1, 1, ModContent.DustType<IncantationCircle>());
+                Main.dust[incantationDust].position = Main.MouseWorld;
+
                 Dust.NewDust(headPos, 1, 1, ModContent.DustType<StarDust>());
 
-                if (player.statMana > 0)
-                    player.CheckMana(1, true);
-                else
+                if (Projectile.ai[0] % 2 == 0)
                 {
-                    Player.HurtInfo hurtInfo = new()
-                    {
-                        Dodgeable = false,
-                        Damage = 1,
-                        DamageSource = PlayerDeathReason.ByProjectile(player.whoAmI, Projectile.identity),
-                        SoundDisabled = true,
-                        DustDisabled = true,
-                    };
+                    bool manaIsAvailable = player.CheckMana(2, true, true);
 
-                    if (player.statLife > 1)
-                        player.statLife -= 1;
-                    else
-                        player.Hurt(hurtInfo, true);
+                    if (!manaIsAvailable)
+                    {
+                        Player.HurtInfo hurtInfo = new()
+                        {
+                            Dodgeable = false,
+                            Damage = 1,
+                            DamageSource = PlayerDeathReason.ByProjectile(player.whoAmI, Projectile.identity),
+                            SoundDisabled = true,
+                            DustDisabled = true,
+                        };
+
+                        if (player.statLife > 2)
+                            player.statLife -= 2;
+                        else
+                            player.Hurt(hurtInfo, true);
+                    }
                 }
             }
 
             UpdatePlayerVisuals(player, rrp);
+
+            SetLaserPosition(player);
 
             if (Projectile.ai[0] == castDuration)
             {
@@ -122,6 +157,8 @@ namespace ExtraVanilla.Content.Projectiles
         public override void OnKill(int timeLeft)
         {
             Main.dust[dust].active = false;
+            Main.dust[incantationDust].active = false;
+
             //if (Main.netMode != NetmodeID.Server)
             //{
             //    Filters.Scene.Deactivate("ExampleEffect");
@@ -199,11 +236,54 @@ namespace ExtraVanilla.Content.Projectiles
             player.itemRotation = (Projectile.velocity * Projectile.direction).ToRotation();
         }
 
+        // The core function of drawing a laser
+        private void DrawLaser(SpriteBatch spriteBatch, Texture2D texture, Vector2 start, Vector2 unit, float step, float rotation = 0f, float scale = 1f, float maxDist = 2000f, Color color = default(Color), int transDist = 50)
+        {
+            float r = unit.ToRotation() + rotation;
+
+            // Draws the laser 'body'
+            for (float i = transDist; i <= Distance; i += step)
+            {
+                Color c = Color.White;
+                var origin = start + i * unit;
+                spriteBatch.Draw(texture, origin - Main.screenPosition,
+                    new Rectangle(0, 26, 28, 26), i < transDist ? Color.Transparent : c, r,
+                    new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
+            }
+
+            // Draws the laser 'tail'
+            spriteBatch.Draw(texture, start + unit * (transDist - step) - Main.screenPosition,
+                new Rectangle(0, 0, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
+
+            // Draws the laser 'head'
+            spriteBatch.Draw(texture, start + (Distance + step) * unit - Main.screenPosition,
+                new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
+        }
+
+        /*
+        *   Sets the end of the laser position based on where it collides with something
+        */
+        private void SetLaserPosition(Player player)
+        {
+            for (Distance = MOVE_DISTANCE; Distance <= 2200f; Distance += 5f)
+            {
+                var start = player.Center + Projectile.velocity * Distance;
+                if (!Collision.CanHit(player.Center, 1, 1, start, 1, 1))
+                {
+                    Distance -= 5f;
+                    break;
+                }
+            }
+        }
+
         private void Shoot(Player player, Vector2 spawnPos)
         {
-            Vector2 shootVelocity = Vector2.Normalize(Main.MouseWorld - player.Center) * 50;
+            Vector2 shootDirection = Vector2.Normalize(headPos - player.Center);
+            Vector2 shootVelocity = shootDirection * 50;
 
             Projectile.NewProjectile(Projectile.GetSource_None(), spawnPos, shootVelocity, ModContent.ProjectileType<FireBall>(), 500000, 50);
+
+            Main.LocalPlayer.velocity += -shootDirection * 10;
 
             //player.GetModPlayer<ExtraVanillaPlayer>().CanUseMagicRod = false;
 

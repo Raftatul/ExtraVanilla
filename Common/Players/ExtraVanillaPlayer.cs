@@ -26,6 +26,8 @@ namespace ExtraVanilla.Common.Players
         public float MagicRodCooldown = 0;
         public float MaxMagicRodCooldown = 18000;
 
+        public bool explosifStaffSafe = true;
+
         public override bool IsLoadingEnabled(Mod mod)
         {
             return ModContent.GetInstance<ExtraVanillaClientConfig>().startMessage;

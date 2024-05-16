@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExtraVanilla.Common.Players;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -59,12 +60,21 @@ namespace ExtraVanilla.Content.Projectiles
 
         public override bool PreKill(int timeLeft)
         {
-            Explode();
+            Lighting.AddLight(Projectile.position, 255, 255, 255);
+            SoundEngine.PlaySound(new SoundStyle("ExtraVanilla/Assets/Sounds/Projectiles/Explosion", SoundType.Sound), Projectile.position);
+
+            PunchCameraModifier modifier = new PunchCameraModifier(Projectile.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 60, 1000f, FullName);
+            Main.instance.CameraModifiers.Add(modifier);
+
+            ExplodeDamage();
+
+            if (!Main.LocalPlayer.GetModPlayer<ExtraVanillaPlayer>().explosifStaffSafe)
+                ExplodeTiles();
 
             return true;
         }
 
-        private void Explode()
+        private void ExplodeDamage()
         {
             // If the Projectile dies without hitting an enemy, crate a small explosion that hits all enemies in the area.
             if (Projectile.penetrate == 1)
@@ -98,20 +108,16 @@ namespace ExtraVanilla.Content.Projectiles
                 dust.velocity *= 2f;
                 dust = Dust.NewDustDirect(Projectile.position - Projectile.velocity, Projectile.width, Projectile.height, DustID.TreasureSparkle, 0f, 0f, 100, Color.Lime, 0.5f);
             }
+        }
 
+        private void ExplodeTiles()
+        {
             int minTileX = (int)(Projectile.Center.X / 16f - explosionRadius);
             int maxTileX = (int)(Projectile.Center.X / 16f + explosionRadius);
             int minTileY = (int)(Projectile.Center.Y / 16f - explosionRadius);
             int maxTileY = (int)(Projectile.Center.Y / 16f + explosionRadius);
 
             Projectile.ExplodeTiles(Projectile.Center, explosionRadius, minTileX, maxTileX, minTileY, maxTileY, false);
-
-            SoundEngine.PlaySound(new SoundStyle("ExtraVanilla/Assets/Sounds/Projectiles/Explosion", SoundType.Sound), Projectile.position);
-
-            PunchCameraModifier modifier = new PunchCameraModifier(Projectile.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 60, 1000f, FullName);
-            Main.instance.CameraModifiers.Add(modifier);
-
-            Lighting.AddLight(Projectile.position, 255, 255, 255);
 
             Console.WriteLine("EXPLOSION");
         }
