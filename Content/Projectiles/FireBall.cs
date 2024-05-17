@@ -30,7 +30,7 @@ namespace ExtraVanilla.Content.Projectiles
             Projectile.width = 32;              //The width of Projectile hitbox 
             Projectile.height = 32;         // The height of Projectile hitbox
             Projectile.friendly = true;         //Can the Projectile deal damage to enemies?
-            Projectile.hostile = true;         //Can the Projectile deal damage to enemies?
+            Projectile.hostile = false;
             Projectile.light = 0.5f;            //How much light emit around the Projectile
             Projectile.ignoreWater = false;          //Does the Projectile's speed be influenced by water?
             Projectile.tileCollide = true;          //Can the Projectile collide with tiles?

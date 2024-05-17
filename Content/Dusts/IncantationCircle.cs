@@ -13,11 +13,11 @@ namespace ExtraVanilla.Content.Dusts
         public override void OnSpawn(Dust dust)
         {
             dust.noGravity = true;
-            dust.frame = new Rectangle(0, 0, 252, 258);
-            dust.scale = 0;
+            dust.frame = new Rectangle(0, 0, 1881, 1784);
+            dust.scale = 0.1f;
             dust.velocity *= 2f;
 
-            dust.color = Color.Lerp(Color.Purple, Color.Cyan, Main.rand.NextFloat());
+            dust.color = new Color(255, 255, 255, 69);
         }
 
         public override bool PreDraw(Dust dust)
@@ -33,9 +33,9 @@ namespace ExtraVanilla.Content.Dusts
         public override bool Update(Dust dust)
         {
             dust.rotation += MathHelper.ToRadians(2f);
-            dust.scale = MathHelper.Lerp(dust.scale, ((MathF.Cos(_timer++ / 16f) / 4f) + 4f) * 0.6f, 0.02f);
+            dust.scale = MathHelper.Lerp(dust.scale, ((MathF.Cos(_timer++ / 16f) / 4f) + 4f) * 0.1f, 0.02f);
 
-            Lighting.AddLight(dust.position, new Vector3(2, 0, 0));
+            //Lighting.AddLight(dust.position, new Vector3(2, 0, 0));
 
             return false;
         }

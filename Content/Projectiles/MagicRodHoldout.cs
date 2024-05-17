@@ -5,6 +5,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -44,8 +45,6 @@ namespace ExtraVanilla.Content.Projectiles
 
         private int dust = -1;
 
-        private int incantationDust = -1;
-
         private int castDuration = 810;
 
         public override void SetStaticDefaults()
@@ -79,10 +78,10 @@ namespace ExtraVanilla.Content.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            //if (Main.netMode != NetmodeID.Server)
-            //{
-            //    Filters.Scene.Activate("ExampleEffect");
-            //}
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Filters.Scene.Activate("ExampleEffect");
+            }
         }
 
         public override void AI()
@@ -97,7 +96,7 @@ namespace ExtraVanilla.Content.Projectiles
 
             // Updating a filter
             //Filters.Scene["ExampleEffect"].GetShader().UseProgress(Projectile.ai[0] / 300);
-            //Filters.Scene["ExampleEffect"].GetShader().UseColor(125, 0, 0);
+            Filters.Scene["ExampleEffect"].GetShader().UseIntensity(1f);
 
             if (Projectile.owner == Main.myPlayer)
             {
@@ -107,10 +106,6 @@ namespace ExtraVanilla.Content.Projectiles
                 if (dust == -1)
                     dust = Dust.NewDust(headPos, 1, 1, ModContent.DustType<StarPower>());
                 Main.dust[dust].position = headPos;
-
-                if (incantationDust == -1)
-                    incantationDust = Dust.NewDust(headPos, 1, 1, ModContent.DustType<IncantationCircle>());
-                Main.dust[incantationDust].position = Main.MouseWorld;
 
                 Dust.NewDust(headPos, 1, 1, ModContent.DustType<StarDust>());
 
@@ -157,12 +152,11 @@ namespace ExtraVanilla.Content.Projectiles
         public override void OnKill(int timeLeft)
         {
             Main.dust[dust].active = false;
-            Main.dust[incantationDust].active = false;
 
-            //if (Main.netMode != NetmodeID.Server)
-            //{
-            //    Filters.Scene.Deactivate("ExampleEffect");
-            //}
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Filters.Scene.Deactivate("ExampleEffect");
+            }
 
             if (Projectile.ai[0] < castDuration)
             {
