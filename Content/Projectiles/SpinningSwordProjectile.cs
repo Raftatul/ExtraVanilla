@@ -27,6 +27,7 @@ namespace ExtraVanilla.Content.Projectiles
             Player player = Main.player[Projectile.owner];
 
             Vector2 relativePoint = player.RotatedRelativePoint(player.MountedCenter);
+            
             if (player.dead)
             {
                 Projectile.Kill();

@@ -37,9 +37,21 @@ namespace ExtraVanilla.Content.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Wood, 20)
+                .AddIngredient(ItemID.Wood, 100)
+                .AddIngredient(ItemID.PalmWood, 100)
+                .AddIngredient(ItemID.Shadewood, 100)
                 .AddRecipeGroup("IronBar", 15)
                 .AddTile(TileID.Anvils)
+                .AddCondition(Condition.CrimsonWorld)
+                .Register();
+            
+            CreateRecipe()
+                .AddIngredient(ItemID.Wood, 100)
+                .AddIngredient(ItemID.PalmWood, 100)
+                .AddIngredient(ItemID.Ebonwood, 100)
+                .AddRecipeGroup("IronBar", 15)
+                .AddTile(TileID.Anvils)
+                .AddCondition(Condition.CorruptWorld)
                 .Register();
         }
     }
